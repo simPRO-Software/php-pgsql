@@ -1,9 +1,9 @@
 --TEST--
-Bug #37100 (data is returned truncated with BINARY CURSOR)
+Bug #37100 (data is returned truncated with BINARY CURSOR) (9.0+)
 --SKIPIF--
 <?php
 include("skipif.inc");
-skip_bytea_not_escape();
+skip_bytea_not_hex();
 ?>
 --FILE--
 <?php
@@ -11,7 +11,6 @@ skip_bytea_not_escape();
 include 'config.inc';
 
 $db = pg_connect($conn_str);
-@pg_query("SET bytea_output = 'escape'");
 
 @pg_query('DROP TABLE test_bug');
 
@@ -41,7 +40,7 @@ pg_close($db);
 
 ?>
 --EXPECT--
-string(24) "\001\003\252\000\010\022"
+string(14) "\x0103aa000812"
 string(12) "0103aa000812"
 int(6)
 string(12) "0103aa000812"
