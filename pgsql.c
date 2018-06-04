@@ -66,6 +66,15 @@
 #define PGSQL_MAX_LENGTH_OF_LONG   30
 #define PGSQL_MAX_LENGTH_OF_DOUBLE 60
 
+/* from postgresql/src/include/catalog/pg_type.h */
+#define PGSQL_OID_BOOL     16
+#define PGSQL_OID_BYTEA    17
+#define PGSQL_OID_INT8     20
+#define PGSQL_OID_INT2     21
+#define PGSQL_OID_INT4     23
+#define PGSQL_OID_TEXT     25
+#define PGSQL_OID_OID      26
+
 #if LONG_MAX < UINT_MAX
 #define PGSQL_RETURN_OID(oid) do { \
 	if (oid > LONG_MAX) { \
